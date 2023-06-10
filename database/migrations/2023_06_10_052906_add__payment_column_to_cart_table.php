@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('MenuID')->after('CustomerID')->required();
             
             $table->unsignedBigInteger('PaymentID')->after('MenuID')->nullable();
-            $table->string('PaymentName')->after('PaymentID')->nullable();
+            $table->string('PaymentDate')->after('PaymentID')->nullable();
             
             $table->foreign('CustomerID')->references('id')->on('customer')->onDelete('restrict');
             $table->foreign('MenuID')->references('id')->on('menu')->onDelete('restrict');
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->dropColumn('CustomerID');
             $table->dropColumn('MenuID');
             $table->dropColumn('PaymentID');
-            $table->dropColumn('PaymentName');
+            $table->dropColumn('PaymentDate');
         });
     }
 };
