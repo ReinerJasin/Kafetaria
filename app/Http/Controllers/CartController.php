@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\Payment;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -60,6 +61,8 @@ class CartController extends Controller
             ->where('CustomerID', $request->user)
             ->orderBy('PaymentDate', 'desc')->get();
 
+        $payment = Payment::all();
+
         $combinedCart = $cart->groupBy('MenuID')->map(function ($items) {
             $firstItem = $items->first();
             $firstItem->Quantity = $items->sum('Quantity');
@@ -72,6 +75,6 @@ class CartController extends Controller
             $totalBelanjaan += ($item->Quantity) * $item->menuRelation['Price'];
         }
 
-        return view('payment', ['cartList' => $combinedCart, 'customerID' => $request->user, 'totalBelanjaan' => $totalBelanjaan]);
+        return view('payment', ['cartList' => $combinedCart, 'customerID' => $request->user, 'totalBelanjaan' => $totalBelanjaan, 'payments' => $payment]);
     }
 }

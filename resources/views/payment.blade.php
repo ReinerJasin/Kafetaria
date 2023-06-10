@@ -45,31 +45,61 @@
 
         <h1>Total belanjaan anda : Rp{{ $totalBelanjaan }}</h1>
 
-        <h1><label for="number-input">Jumlah uang diterima: Rp</label>
-            <input type="number" id="number-input" name="number" required>
+        <h1><label for="number-input">Jumlah uang diterima : Rp</label>
+            <input type="number" id="number-input" name="number" value="0" required>
         </h1>
 
-        <hr>
+        <h1>
+            <h1><label for="payment-method">Metode Pembayaran : </label>
+                <select name="payment-method" id="payment-method">
+                    @foreach ($payments as $payment)
+                        <option value="{{ $payment->id }}">{{ $payment->PaymentName }}</option>
+                    @endforeach
+                </select>
+            </h1>
 
-        <h3 class="disabled" id="kembalian">Kembalian : Rp0</h3>
+            <hr>
 
-        <button type="submit" class="act-btn" value="submit">Submit</button>
+            <h3 class="disabled" id="kembalian">Kembalian : Rp0</h3>
+
+            <button type="submit" class="act-btn" value="submit">Submit</button>
     </form>
 
     <script>
-        $(document).ready(function() {
-        $('#number-input').on('input', function() {
-            var jumlahUang = parseInt($(this).val());
+        // function calculateKembalian yang dibuat dalam function (encapsulation) agar script tidak konflik script jQuery lainnya
+        function calculateKembalian() {
+
+            var jumlahUang = parseInt($('#number-input').val());
             var totalBelanjaan = parseInt({{ $totalBelanjaan }});
+            
             var kembalian = jumlahUang - totalBelanjaan;
+        
             $('#kembalian').text('Kembalian: Rp' + kembalian);
+        
+        }
+    
+        $(document).ready(function() {
+            $('#number-input').on('input', calculateKembalian);
         });
-    });
     </script>
-    {{-- <div class="button-container">
-        <a href="history?user={{ $customerID }}" class="act-btn">History</a><br>
-        <a href="#" class="act-btn disabled">Cart</a><br>
-        <a href="#" class="act-btn disabled">Pay</a>
-    </div> --}}
+    
+    <script>
+        $(document).ready(function() {
+            $('#payment-method').on('change', function() {
+                var selectedPaymentId = $(this).val();
+                var numberInput = $('#number-input');
+    
+                if (selectedPaymentId == 1) {
+                    numberInput.prop('disabled', false);
+                    numberInput.val('0');
+                } else {
+                    numberInput.prop('disabled', true);
+                    numberInput.val({{ $totalBelanjaan }});
+                }
+    
+                calculateKembalian();
+            });
+        });
+    </script>
 
 @endsection
