@@ -20,7 +20,18 @@ tr:hover {
 th {
     padding-top: 12px;
     padding-bottom: 12px;
+    padding-left: 8px;
     text-align: left;
     background-color: #0d6efd;
     color: white;
+}
+
+.button {
+    background: red;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    /* font-weight: bold; */
+    border-radius: 5px;
+    text-decoration: none;
 }

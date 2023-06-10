@@ -48,4 +48,13 @@ class CartController extends Controller
         // return;
         return Redirect::action([MenuController::class, 'index'], ['user' => $customerID]);
     }
+
+    public function delete($orderID, Request $request)
+    {
+        $customerID = $request->input('user');
+        $cart = Cart::findOrFail($orderID);
+        $cart->delete();
+
+        return Redirect::action([CartController::class, 'cart'], ['user' => $customerID]);
+    }
 }

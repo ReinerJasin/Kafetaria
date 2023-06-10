@@ -21,6 +21,7 @@
                 <th>Menu</th>
                 <th>Quantity</th>
                 <th>Payment Status</th>
+                <th>Action</th>
                 {{-- <th>Payment Method</th>
                 <th>Payment Date</th> --}}
             </tr>
@@ -36,8 +37,8 @@
                     @elseif ($cart->Status == 2)
                         <td>Transaksi Berhasil</td>
                     @endif
-                    {{-- <td>{{$cart->paymentRelation['PaymentName']}}</td>
-                    <td>{{$cart->PaymentDate}}</td> --}}
+                    {{-- <td>{{$cart->paymentRelation['PaymentName']}}</td> --}}
+                    <td><a href="cart-delete/{{$cart->id}}?user={{$customerID}}" class="button">Remove</a></td>
                 </tr>
             @endforeach
         </tbody>
