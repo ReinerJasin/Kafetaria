@@ -21,11 +21,11 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="/">UC Walk Kafetaria</a>
+            <a class="navbar-brand" href="/"><b>UC Walk Kafetaria</b></a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="menu?user={{$customerID}}">Menu</a>
+                        <a class="nav-link" href="menu?user={{$customerID}}">Menu</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="cart?user={{$customerID}}">Cart</a>
@@ -33,8 +33,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="history?user={{$customerID}}">History</a>
                     </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Logout</a>
+                        <a class="nav-link" href="/"><b></b>Log out</a>
                     </li>
                 </ul>
             </div>

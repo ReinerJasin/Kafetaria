@@ -40,8 +40,9 @@
 
     <br>
 
-    <form action="/process-form" method="POST">
+    <form action="/cart-update/{{$customerID}}" method="POST">
         @csrf
+        @method('PUT')
 
         <h1>Total belanjaan anda : Rp{{ $totalBelanjaan }}</h1>
 
@@ -62,7 +63,7 @@
 
             <h3 class="disabled" id="kembalian">Kembalian : Rp0</h3>
 
-            <button type="submit" class="act-btn" value="submit">Submit</button>
+            <button type="submit" class="act-btn disabled" value="submit" id="payment-button">Submit</button>
     </form>
 
     <script>
@@ -71,24 +72,30 @@
 
             var jumlahUang = parseInt($('#number-input').val());
             var totalBelanjaan = parseInt({{ $totalBelanjaan }});
-            
+
             var kembalian = jumlahUang - totalBelanjaan;
-        
+            
+            if ((parseInt($('#number-input').val()) - parseInt({{ $totalBelanjaan }})) < 0) {
+                    $('#payment-button').addClass('disabled');
+                } else {
+                    $('#payment-button').removeClass('disabled');
+                }
+
             $('#kembalian').text('Kembalian: Rp' + kembalian);
-        
+
         }
-    
+
         $(document).ready(function() {
             $('#number-input').on('input', calculateKembalian);
         });
     </script>
-    
+
     <script>
         $(document).ready(function() {
             $('#payment-method').on('change', function() {
                 var selectedPaymentId = $(this).val();
                 var numberInput = $('#number-input');
-    
+
                 if (selectedPaymentId == 1) {
                     numberInput.prop('disabled', false);
                     numberInput.val('0');
@@ -96,8 +103,9 @@
                     numberInput.prop('disabled', true);
                     numberInput.val({{ $totalBelanjaan }});
                 }
-    
                 calculateKembalian();
+
+
             });
         });
     </script>

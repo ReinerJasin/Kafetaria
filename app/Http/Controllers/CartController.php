@@ -54,6 +54,23 @@ class CartController extends Controller
 
         return Redirect::action([CartController::class, 'cart'], ['user' => $customerID]);
     }
+    
+    public function update($customerID, Request $request)
+    {
+        $carts = Cart::whereNull('PaymentDate')
+            ->where('CustomerID', $customerID) // where user='reiner'
+            ->orderBy('PaymentDate', 'desc')->get();
+        
+        
+        foreach($carts as $cart){
+            $cart->PaymentId = $request->input('payment-method');
+            $cart->PaymentDate = Carbon::now();
+            $cart->Status = 2;
+            $cart->save();
+        }
+
+        return Redirect::action([CartController::class, 'history'], ['user' => $customerID]);
+    }
 
     public function payment(Request $request)
     {
