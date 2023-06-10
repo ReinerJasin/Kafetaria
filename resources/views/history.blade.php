@@ -45,7 +45,8 @@
 
     <div class="button-container">
         <a href="#" class="act-btn disabled">History</a><br>
-        <a href="cart?user={{ $customerID }}" class="act-btn">Cart</a>
+        <a href="cart?user={{ $customerID }}" class="act-btn">Cart</a><br>
+        <a href="#" class="act-btn disabled">Pay</a>
     </div>
 
 @endsection

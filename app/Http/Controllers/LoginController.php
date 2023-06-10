@@ -13,8 +13,4 @@ class LoginController extends Controller
         return view('login', ['customerList' => $customer]);
     }
 
-    // public function getUserID()
-    // {
-    //     dd('masuk');
-    // }
 }
