@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('/', [MenuController::class, 'index']);
+Route::get('/menu', [MenuController::class, 'index']);
+Route::get('/cart-add/{CustomerID}/{MenuID}', [CartController::class, 'store']);
 Route::get('/history', [CartController::class, 'history']);
 Route::get('/cart', [CartController::class, 'cart']);

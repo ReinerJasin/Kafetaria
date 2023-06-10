@@ -20,7 +20,7 @@
                 <h1>{{$menu->MenuName}}</h1>
                 <p class="price">{{$menu->Price}}</p>
                 <p>Nasi goreng dengan topping sayur berupa wortel dan daun bawang</p>
-                <p><button>Add to Cart</button></p>
+                <p><a href="/cart-add/{{1}}/{{$menu->id}}" class="button">Add to Cart</a></p>
             </div>
         </div>
     @endforeach
