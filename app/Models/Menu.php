@@ -10,4 +10,9 @@ class Menu extends Model
     use HasFactory;
     
     protected $table = 'menu';
+
+    public function cafeRelation()
+    {
+        return $this->belongsTo(Cafe::class, 'CafeID', 'id');
+    }
 }
