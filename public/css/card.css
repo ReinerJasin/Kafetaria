@@ -33,6 +33,8 @@
   cursor: pointer;
   width: 100%;
   font-size: 18px;
+  text-decoration: none;
+  border-radius: 10px;
 }
 
 .card a:hover {

@@ -18,7 +18,7 @@
                 {{-- @dd($menu->cafe()) --}}
                 <p class="merchant">{{$menu->cafeRelation['CafeName']}}</p>
                 <h1>{{$menu->MenuName}}</h1>
-                <p class="price">{{$menu->Price}}</p>
+                <p class="price">Rp{{$menu->Price}}</p>
                     <p>Nasi goreng dengan topping sayur berupa wortel dan daun bawang</p>
                     <p><a href="/cart-add/{{$customerID}}/{{$menu->id}}?user={{$customerID}}" class="button">Add to Cart</a></p>
             </div>
