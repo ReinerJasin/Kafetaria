@@ -20,7 +20,7 @@
                     <option value="{{$customer->id}}">{{$customer->CustomerName}}</option>
                     @endforeach
                 </select>
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Next" />
             </div>
         </div>
     </form>
