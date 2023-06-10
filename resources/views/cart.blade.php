@@ -1,6 +1,6 @@
 @extends('layouts.mainlayout')
 
-@section('title', 'History')
+@section('title', 'Cart')
 
 @section('css')
     <link href="{{ asset('css\card.css') }}" rel="stylesheet">
@@ -9,8 +9,8 @@
 @endsection
 
 @section('content')
-    <h1>History</h1>
-    <h3>Silahkan melihat detail riwayat pemesanan anda</h3><br>
+    <h1>Cart</h1>
+    <h3>Silahkan melihat shopping cart anda</h3><br>
 
     {{-- @dd($historyList) --}}
     </table>
@@ -21,27 +21,27 @@
                 <th>Menu</th>
                 <th>Quantity</th>
                 <th>Payment Status</th>
-                <th>Payment Method</th>
-                <th>Payment Date</th>
+                {{-- <th>Payment Method</th>
+                <th>Payment Date</th> --}}
             </tr>
         </thead>
         <tbody>
-            @foreach ($historyList as $history)
+            @foreach ($cartList as $cart)
                 <tr>
-                    <td>{{$history->id}}</td>
-                    <td>{{$history->menuRelation['MenuName']}}</td>
-                    <td>{{$history->Quantity}}</td>
-                    <td>{{$history->Status}}</td>
-                    <td>{{$history->paymentRelation['PaymentName']}}</td>
-                    <td>{{$history->PaymentDate}}</td>
+                    <td>{{$cart->id}}</td>
+                    <td>{{$cart->menuRelation['MenuName']}}</td>
+                    <td>{{$cart->Quantity}}</td>
+                    <td>{{$cart->Status}}</td>
+                    {{-- <td>{{$cart->paymentRelation['PaymentName']}}</td>
+                    <td>{{$cart->PaymentDate}}</td> --}}
                 </tr>
             @endforeach
         </tbody>
     </table>
 
     <div class="button-container">
-        {{-- <a href="history" class="act-btn">History</a><br> --}}
-        <a href="cart" class="act-btn">Cart</a>
+        <a href="history" class="act-btn">History</a><br>
+        {{-- <a href="cart" class="act-btn">Cart</a> --}}
     </div>
 
 @endsection

@@ -15,8 +15,8 @@
         <div class="card">
             <img src="images\nasi-goreng.jpg" alt="Nasi Goreng" style="width:100%">
             <div class="content-padding">
-                {{-- @dd($menu) --}}
-                <p class="merchant">Kafe ID : {{$menu->CafeID}}</p>
+                {{-- @dd($menu->cafe()) --}}
+                <p class="merchant">{{$menu->cafeRelation['CafeName']}}</p>
                 <h1>{{$menu->MenuName}}</h1>
                 <p class="price">{{$menu->Price}}</p>
                 <p>Nasi goreng dengan topping sayur berupa wortel dan daun bawang</p>
