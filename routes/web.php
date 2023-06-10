@@ -22,4 +22,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MenuController::class, 'index']);
 Route::get('/history', [CartController::class, 'history']);
-// Route::get('/', [MenuController::class, 'index']);
+Route::get('/cart', [CartController::class, 'cart']);
