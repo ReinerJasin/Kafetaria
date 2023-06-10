@@ -1,10 +1,10 @@
-.button-container{
+.button-container {
     position: fixed;
     right: 20px;
     bottom: 20px;
 }
 
-.act-btn{
+.act-btn {
     background: #0d6efd;
     display: inline-block;
     width: 75px;
@@ -16,4 +16,9 @@
     font-size: 30px;
     font-weight: bold;
     border-radius: 50%;
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }

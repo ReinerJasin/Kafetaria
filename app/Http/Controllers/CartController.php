@@ -15,23 +15,25 @@ class CartController extends Controller
     //     return view ('cart', ['cartList' => $cart]);
     // }
 
-    public function history()
+    public function history(Request $request)
     {
+        // dd($request);
         $history = Cart::whereNotNull('PaymentDate')
-            ->where('CustomerID', 1)// where user='reiner'
+            ->where('CustomerID', $request->user)// where user='reiner'
             ->orderBy('PaymentDate','desc')->get();
-        return view('history', ['historyList' => $history]);
+        return view('history', ['historyList' => $history, 'customerID' => $request->user]);
     }
 
-    public function cart()
+    public function cart(Request $request)
     {
         $cart = Cart::whereNull('PaymentDate')
-        ->where('CustomerID', 1)// where user='reiner'
+        ->where('CustomerID', $request->user)// where user='reiner'
         ->orderBy('PaymentDate','desc')->get();
-        return view('cart', ['cartList' => $cart]);
+        return view('cart', ['cartList' => $cart, 'customerID' => $request->user]);
     }
     public function store($customerID, $menuID)
     {
+        // dd($customerID);
         $cart = new Cart;
         $cart->CustomerID = $customerID;
         $cart->MenuID = $menuID;
@@ -44,6 +46,6 @@ class CartController extends Controller
         $cart->save();
 
         // return;
-        return Redirect::action([MenuController::class, 'index']);
+        return Redirect::action([MenuController::class, 'index'], ['user' => $customerID]);
     }
 }

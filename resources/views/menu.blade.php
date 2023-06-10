@@ -6,7 +6,7 @@
     <link href="{{ asset('css\card.css') }}" rel="stylesheet">
     <link href="{{ asset('css\floating-button.css') }}" rel="stylesheet">
 @endsection
-
+{{-- @dd($customerID) --}}
 @section('content')
     <h1>List Menu</h1>
     <h3>Silahkan memesan melalui menu berikut</h3><br>
@@ -19,15 +19,15 @@
                 <p class="merchant">{{$menu->cafeRelation['CafeName']}}</p>
                 <h1>{{$menu->MenuName}}</h1>
                 <p class="price">{{$menu->Price}}</p>
-                <p>Nasi goreng dengan topping sayur berupa wortel dan daun bawang</p>
-                <p><a href="/cart-add/{{1}}/{{$menu->id}}" class="button">Add to Cart</a></p>
+                    <p>Nasi goreng dengan topping sayur berupa wortel dan daun bawang</p>
+                    <p><a href="/cart-add/{{$customerID}}/{{$menu->id}}?user={{$customerID}}" class="button">Add to Cart</a></p>
             </div>
         </div>
     @endforeach
 
     <div class="button-container">
-        <a href="history" class="act-btn">History</a><br>
-        <a href="cart" class="act-btn">Cart</a>
+        <a href="history?user={{$customerID}}" class="act-btn">History</a><br>
+        <a href="cart?user={{$customerID}}" class="act-btn">Cart</a>
     </div>
 
 @endsection

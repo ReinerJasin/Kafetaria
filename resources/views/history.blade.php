@@ -28,20 +28,24 @@
         <tbody>
             @foreach ($historyList as $history)
                 <tr>
-                    <td>{{$history->id}}</td>
-                    <td>{{$history->menuRelation['MenuName']}}</td>
-                    <td>{{$history->Quantity}}</td>
-                    <td>{{$history->Status}}</td>
-                    <td>{{$history->paymentRelation['PaymentName']}}</td>
-                    <td>{{$history->PaymentDate}}</td>
+                    <td>{{ $history->id }}</td>
+                    <td>{{ $history->menuRelation['MenuName'] }}</td>
+                    <td>{{ $history->Quantity }}</td>
+                    @if ($history->Status == 1)
+                        <td>Belum Dibayar</td>
+                    @elseif ($history->Status == 2)
+                        <td>Transaksi Berhasil</td>
+                    @endif
+                    <td>{{ $history->paymentRelation['PaymentName'] }}</td>
+                    <td>{{ $history->PaymentDate }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
     <div class="button-container">
-        {{-- <a href="history" class="act-btn">History</a><br> --}}
-        <a href="cart" class="act-btn">Cart</a>
+        <a href="#" class="act-btn disabled">History</a><br>
+        <a href="cart?user={{ $customerID }}" class="act-btn">Cart</a>
     </div>
 
 @endsection

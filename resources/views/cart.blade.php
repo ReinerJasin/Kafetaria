@@ -28,10 +28,14 @@
         <tbody>
             @foreach ($cartList as $cart)
                 <tr>
-                    <td>{{$cart->id}}</td>
-                    <td>{{$cart->menuRelation['MenuName']}}</td>
-                    <td>{{$cart->Quantity}}</td>
-                    <td>{{$cart->Status}}</td>
+                    <td>{{ $cart->id }}</td>
+                    <td>{{ $cart->menuRelation['MenuName'] }}</td>
+                    <td>{{ $cart->Quantity }}</td>
+                    @if ($cart->Status == 1)
+                        <td>Belum Dibayar</td>
+                    @elseif ($cart->Status == 2)
+                        <td>Transaksi Berhasil</td>
+                    @endif
                     {{-- <td>{{$cart->paymentRelation['PaymentName']}}</td>
                     <td>{{$cart->PaymentDate}}</td> --}}
                 </tr>
@@ -40,8 +44,8 @@
     </table>
 
     <div class="button-container">
-        <a href="history" class="act-btn">History</a><br>
-        {{-- <a href="cart" class="act-btn">Cart</a> --}}
+        <a href="history?user={{ $customerID }}" class="act-btn">History</a><br>
+        <a href="#" class="act-btn disabled">Cart</a><br>
     </div>
 
 @endsection
