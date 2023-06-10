@@ -15,13 +15,16 @@ class CartController extends Controller
     public function history()
     {
         $history = Cart::whereNotNull('PaymentDate')
-            ->where('CustomerID', 1)->get();
+            ->where('CustomerID', 1)// where user='reiner'
+            ->orderBy('PaymentDate','desc')->get();
         return view('history', ['historyList' => $history]);
     }
 
     public function cart()
     {
-        $cart = Cart::whereNull('PaymentDate')->get();
+        $cart = Cart::whereNull('PaymentDate')
+        ->where('CustomerID', 1)// where user='reiner'
+        ->orderBy('PaymentDate','desc')->get();
         return view('cart', ['cartList' => $cart]);
     }
 }
