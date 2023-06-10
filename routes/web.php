@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,66 +20,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('/', function () {
-    return view('menu', [
-        // 'cart' => [
-        //     [
-        //         'CartID' => 1,
-        //         'UserID' => 1,
-        //         'MenuID' => 1,
-        //         'Quantity' => 3,
-        //         'PaymentStatus' => false,
-        //         'PaymentID' => null,
-        //     ],
-        //     [
-        //         'CartID' => 2,
-        //         'UserID' => 1,
-        //         'MenuID' => 2,
-        //         'Quantity' => 3,
-        //         'PaymentStatus' => true,
-        //         'PaymentID' => 1,
-        //     ],
-        //     [
-        //         'CartID' => 3,
-        //         'UserID' => 1,
-        //         'MenuID' => 4,
-        //         'Quantity' => 2,
-        //         'PaymentStatus' => true,
-        //         'PaymentID' => 1,
-        //     ]
-        // ]
-        
-        'menuList' => [
-            [
-                'MenuID' => 1,
-                'CafeID' => 1,
-                'MenuName' => 'Nasi Goreng',
-                'Price' => 30000,
-            ],
-            [
-                'MenuID' => 2,
-                'CafeID' => 1,
-                'MenuName' => 'Ayam Bakar',
-                'Price' => 35000,
-            ],
-            [
-                'MenuID' => 2,
-                'CafeID' => 1,
-                'MenuName' => 'Ayam Bakar',
-                'Price' => 35000,
-            ],
-            [
-                'MenuID' => 2,
-                'CafeID' => 1,
-                'MenuName' => 'Ayam Bakar',
-                'Price' => 35000,
-            ],
-            [
-                'MenuID' => 3,
-                'CafeID' => 2,
-                'MenuName' => 'Es Teh Manis',
-                'Price' => 10000,
-            ]
-        ]
-    ]);
-});
+Route::get('/', [MenuController::class, 'index']);
+Route::get('/history', [CartController::class, 'history']);
+// Route::get('/', [MenuController::class, 'index']);
